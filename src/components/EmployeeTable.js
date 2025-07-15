@@ -31,9 +31,10 @@ const EmployeeTable = () => {
     }
   };
 
+  // ✅ Updated to call n8n directly
   const sendEmail = async (email) => {
     try {
-      const response = await fetch("https://employee-dashboard-6lt8.vercel.app/api/send-email", {
+      const response = await fetch("https://mohamedashifm.app.n8n.cloud/webhook/send-email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -54,17 +55,15 @@ const EmployeeTable = () => {
   };
 
   const openForm = (employee = null) => {
-    if (employee) {
-      setFormData(employee);
-    } else {
-      setFormData({
+    setFormData(
+      employee || {
         employee_number: "",
         name: "",
         email_id: "",
         phone_number: "",
         gender: "",
-      });
-    }
+      }
+    );
     setShowForm(true);
   };
 
@@ -114,8 +113,7 @@ const EmployeeTable = () => {
   };
 
   const deleteEmployee = async (id) => {
-    const confirmDelete = window.confirm("Are you sure you want to delete?");
-    if (!confirmDelete) return;
+    if (!window.confirm("Are you sure you want to delete?")) return;
 
     try {
       const response = await fetch(`${supabaseUrl}/rest/v1/employees?id=eq.${id}`, {
@@ -202,9 +200,7 @@ const EmployeeTable = () => {
               type="email"
               placeholder="Email"
               value={formData.email_id}
-              onChange={(e) =>
-                setFormData({ ...formData, email_id: e.target.value })
-              }
+              onChange={(e) => setFormData({ ...formData, email_id: e.target.value })}
             />
             <input
               type="text"
@@ -218,9 +214,7 @@ const EmployeeTable = () => {
               type="text"
               placeholder="Gender"
               value={formData.gender}
-              onChange={(e) =>
-                setFormData({ ...formData, gender: e.target.value })
-              }
+              onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
             />
             <div className="form-actions">
               <button onClick={submitForm}>
