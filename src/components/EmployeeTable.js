@@ -33,7 +33,8 @@ const EmployeeTable = () => {
 
   const sendEmail = async (email) => {
     try {
-      const response = await fetch("http://localhost:5000/api/send-email", {
+      const response = await fetch("https://employee-dashboard-6lt8.vercel.app/api/send-email", {
+
         method: "POST",
         headers: {
           "Content-Type": "application/json",
