@@ -1,0 +1,161 @@
+.employee-container {
+  max-width: 900px;
+  margin: 0 auto;
+  color: rgb(161, 152, 152);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.head-title {
+  text-align: center;
+  margin-bottom: 20px;
+  color:black
+}
+
+.add-btn {
+  background-color: #0d6efd;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.add-btn:hover {
+  background-color: #0b5ed7;
+}
+
+.employee-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #2c2c2c;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.employee-table th,
+.employee-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #444;
+}
+
+.employee-table th {
+  background: #333;
+}
+
+.employee-table td button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: background-color 0.2s ease;
+}
+
+.employee-table td button:hover {
+  background-color: #218838;
+}
+
+.employee-table td button:nth-child(2) {
+  background-color: #ffc107;
+}
+
+.employee-table td button:nth-child(2):hover {
+  background-color: #e0a800;
+}
+
+.employee-table td button:nth-child(3) {
+  background-color: #dc3545;
+}
+
+.employee-table td button:nth-child(3):hover {
+  background-color: #c82333;
+}
+
+/* Modal Form */
+.form-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.form-box {
+  background-color: #2d2d2d;
+  padding: 30px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+  color: white;
+}
+
+.form-box h3 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.form-box input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border: none;
+  border-radius: 6px;
+  background-color: #444;
+  color: white;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-actions button {
+  flex: 1;
+  padding: 10px;
+  margin: 0 5px;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  background-color: #0d6efd;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.form-actions button:hover {
+  background-color: #0b5ed7;
+}
+
+.form-actions button:last-child {
+  background-color: #6c757d;
+}
+
+.form-actions button:last-child:hover {
+  background-color: #5a6268;
+}
+/* Responsive Table Container */
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; /* smooth scroll on iOS */
+  margin-bottom: 20px;
+}
+
+.employee-table {
+  min-width: 700px; /* 👈 Force table to scroll on small screens */
+  width: 100%;
+  border-collapse: collapse;
+  background: #2c2c2c;
+  border-radius: 10px;
+  overflow: hidden;
+}
