@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./EmployeeTable.css"; // optional, if you add CSS
+import "./EmployeeTable.css";
 
 const supabaseUrl = "https://ongldqocyjecvmywsbkr.supabase.co";
 const supabaseAnonKey =
@@ -33,8 +33,7 @@ const EmployeeTable = () => {
 
   const sendEmail = async (email) => {
     try {
-      const response = await fetch("https://employee-dashboard-6lt8.vercel.app/api/send-email", {
-
+      const response = await fetch("https://mohamedashifm.app.n8n.cloud/webhook/send-email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -42,7 +41,11 @@ const EmployeeTable = () => {
         body: JSON.stringify({ email }),
       });
 
-      if (!response.ok) throw new Error("Failed to send");
+      if (!response.ok) {
+        const err = await response.text();
+        throw new Error("Failed to send: " + err);
+      }
+
       alert("✅ Email sent successfully!");
     } catch (error) {
       console.error("❌ Error sending email:", error);
@@ -111,20 +114,17 @@ const EmployeeTable = () => {
   };
 
   const deleteEmployee = async (id) => {
-    const confirm = window.confirm("Are you sure you want to delete?");
-    if (!confirm) return;
+    const confirmDelete = window.confirm("Are you sure you want to delete?");
+    if (!confirmDelete) return;
 
     try {
-      const response = await fetch(
-        `${supabaseUrl}/rest/v1/employees?id=eq.${id}`,
-        {
-          method: "DELETE",
-          headers: {
-            apikey: supabaseAnonKey,
-            Authorization: `Bearer ${supabaseAnonKey}`,
-          },
-        }
-      );
+      const response = await fetch(`${supabaseUrl}/rest/v1/employees?id=eq.${id}`, {
+        method: "DELETE",
+        headers: {
+          apikey: supabaseAnonKey,
+          Authorization: `Bearer ${supabaseAnonKey}`,
+        },
+      });
 
       if (!response.ok) throw new Error("Failed to delete");
       fetchEmployees();
@@ -186,48 +186,36 @@ const EmployeeTable = () => {
               type="number"
               placeholder="Employee Number"
               value={formData.employee_number}
-              onChange={(e) =>
-                setFormData({ ...formData, employee_number: e.target.value })
-              }
+              onChange={(e) => setFormData({ ...formData, employee_number: e.target.value })}
               required
             />
             <input
               type="text"
               placeholder="Name"
               value={formData.name}
-              onChange={(e) =>
-                setFormData({ ...formData, name: e.target.value })
-              }
+              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
               required
             />
             <input
               type="email"
               placeholder="Email"
               value={formData.email_id}
-              onChange={(e) =>
-                setFormData({ ...formData, email_id: e.target.value })
-              }
+              onChange={(e) => setFormData({ ...formData, email_id: e.target.value })}
             />
             <input
               type="text"
               placeholder="Phone Number"
               value={formData.phone_number}
-              onChange={(e) =>
-                setFormData({ ...formData, phone_number: e.target.value })
-              }
+              onChange={(e) => setFormData({ ...formData, phone_number: e.target.value })}
             />
             <input
               type="text"
               placeholder="Gender"
               value={formData.gender}
-              onChange={(e) =>
-                setFormData({ ...formData, gender: e.target.value })
-              }
+              onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
             />
             <div className="form-actions">
-              <button onClick={submitForm}>
-                {formData.id ? "Update" : "Add"}
-              </button>
+              <button onClick={submitForm}>{formData.id ? "Update" : "Add"}</button>
               <button onClick={closeForm}>Cancel</button>
             </div>
           </div>
