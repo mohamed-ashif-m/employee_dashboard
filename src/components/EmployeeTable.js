@@ -33,7 +33,7 @@ const EmployeeTable = () => {
 
   const sendEmail = async (email) => {
     try {
-      const response = await fetch("https://mohamedashifm.app.n8n.cloud/webhook/send-email", {
+      const response = await fetch("https://employee-dashboard-6lt8.vercel.app/api/send-email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -186,7 +186,9 @@ const EmployeeTable = () => {
               type="number"
               placeholder="Employee Number"
               value={formData.employee_number}
-              onChange={(e) => setFormData({ ...formData, employee_number: e.target.value })}
+              onChange={(e) =>
+                setFormData({ ...formData, employee_number: e.target.value })
+              }
               required
             />
             <input
@@ -200,22 +202,30 @@ const EmployeeTable = () => {
               type="email"
               placeholder="Email"
               value={formData.email_id}
-              onChange={(e) => setFormData({ ...formData, email_id: e.target.value })}
+              onChange={(e) =>
+                setFormData({ ...formData, email_id: e.target.value })
+              }
             />
             <input
               type="text"
               placeholder="Phone Number"
               value={formData.phone_number}
-              onChange={(e) => setFormData({ ...formData, phone_number: e.target.value })}
+              onChange={(e) =>
+                setFormData({ ...formData, phone_number: e.target.value })
+              }
             />
             <input
               type="text"
               placeholder="Gender"
               value={formData.gender}
-              onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
+              onChange={(e) =>
+                setFormData({ ...formData, gender: e.target.value })
+              }
             />
             <div className="form-actions">
-              <button onClick={submitForm}>{formData.id ? "Update" : "Add"}</button>
+              <button onClick={submitForm}>
+                {formData.id ? "Update" : "Add"}
+              </button>
               <button onClick={closeForm}>Cancel</button>
             </div>
           </div>
